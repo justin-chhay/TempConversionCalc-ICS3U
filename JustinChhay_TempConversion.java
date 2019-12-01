@@ -6,16 +6,6 @@
 */
 
 
-/*
-LIST OF THINGS TO DO FOR THIS ASSIGNMENT:
-    ADD OUTPUT TEXT FOR ALL THE METHODS
-    POLISH PROGRAM AND GRAMMAR FOR COMMENTS AND OUTPUT TEXT
-
-    DEBUG AND COMMENT ALL CODE (for eg. comment the specfic variable each error trap is for(part of rubric))
-
-*/
-
-
 // The "JustinChhay_TempConversion" class.
 import java.awt.*;
 import hsa.Console;
@@ -52,7 +42,7 @@ public class JustinChhay_TempConversion
 	x = new JustinChhay_TempConversion ();
 
 	//Starts program with splashScreen method
-	x.mainMenu ();
+	x.splashScreen ();
     }
 
 
@@ -187,11 +177,13 @@ public class JustinChhay_TempConversion
 	c.drawString ("7) Instructions", 350, 300);
 	c.drawString ("Press ANY other key to EXIT.", 150, 400);
 
-	//Try Catch - ErrorTrap for CHOICE
+	//Try Catch - ErrorTrap for CHOICE (ensures program won't crash or stop if user clicks on cancel or X button)
 	try
 	{
+	    //JOptionPane - Asks user for choice in main menu (Determines next output screen)
 	    choice2 = JOptionPane.showInputDialog (null, "Please enter an option:\n 1 for Celsius to Fahrenheit\n 2 for Celsius to Kelvin\n 3 for Fahrenheit to Celsius\n 4 for Fahrenheit to Kelvin\n 5 for Kelvin to Fahrenheit\n 6 for Kelvin to Celsius\n 7 for Instructions\n ANY OTHER KEY TO EXIT");
 
+	    //If Structure - Calls a specific method depending on user input for choice2
 	    if (choice2.equals ("1") || choice2.equals ("2") || choice2.equals ("3") || choice2.equals ("4") || choice2.equals ("5") || choice2.equals ("6"))
 	    {
 		askData (); //If user chooses a specified conversion, run askData();
@@ -204,7 +196,6 @@ public class JustinChhay_TempConversion
 	    {
 		goodbye (); //if user inputs anything else, run goodbye(); to exit
 	    }
-
 	}
 	catch (Exception e)
 	{
@@ -246,7 +237,7 @@ public class JustinChhay_TempConversion
 	    c.drawString ("Would you like to pause the program?", 125, 220);
 	    c.setColor (Color.white);
 
-
+	    //If Structure - Will output conversion statement depending on choice2 input from main menu
 	    if (choice2.equals ("1"))
 		c.drawString ("Converting Celsius (°C) to Fahrenheit (°F)", 50, 200);
 	    else if (choice2.equals ("2"))
@@ -260,11 +251,13 @@ public class JustinChhay_TempConversion
 	    else if (choice2.equals ("6"))
 		c.drawString ("Converting Kelvin (K) to Celsius (°C)", 50, 200);
 
+	    //Text - Draws text for input prompt
 	    c.drawString ("Enter a negative temperature: ", 50, 230);
 
 	    //Try Catch - Error trap for temp, makes sure input is a number
 	    try
 	    {
+		//JOptionPane - Asks user for input for negative temperature value to convert from (parses into double)
 		temp = Double.parseDouble (JOptionPane.showInputDialog (null, "Please input a negative int/double value for the temperature you are converting from."));
 
 		//If Structure - Error trap for temp, makes sure input is negative
@@ -282,6 +275,7 @@ public class JustinChhay_TempConversion
 		askData ();
 	    }
 
+	    //If Structure - Will Output correct user-inputted temperature in correct unit
 	    if (choice2.equals ("1"))
 		c.drawString (temp + " °C", 375, 230);
 	    else if (choice2.equals ("2"))
@@ -340,37 +334,37 @@ public class JustinChhay_TempConversion
 	    c.setColor (Color.white);
 	    c.setFont (text);
 
-	    if (choice2.equals ("1"))
+	    //If Structure - Depedning on user choice, it will output the correct specified conversion with appropriate units
+	    if (choice2.equals ("1")) // Celsius to Fahrenheit
 	    {
 		c.drawString ("Converted " + temp + " °C to " + cUnit + " °F", 50, 240);
 		c.drawString ("Conversion from Celsius to Fahrenheit completed.", 50, 270);
 	    }
-	    else if (choice2.equals ("2"))
+	    else if (choice2.equals ("2")) // Celsius to Kelvin
 	    {
 		c.drawString ("Converted " + temp + " °C to " + cUnit + " K", 50, 240);
 		c.drawString ("Conversion from Celsius to Kelvin completed.", 50, 270);
 	    }
-	    else if (choice2.equals ("3"))
+	    else if (choice2.equals ("3")) // Fahrenheit to Celsius
 	    {
 		c.drawString ("Converted " + temp + " °F to " + cUnit + " °C", 50, 240);
 		c.drawString ("Conversion from Fahrenheit to Celsius completed.", 50, 270);
 	    }
-	    else if (choice2.equals ("4"))
+	    else if (choice2.equals ("4")) // Fahrenheit to Kelvin
 	    {
 		c.drawString ("Converted " + temp + " °F to " + cUnit + " K", 50, 240);
 		c.drawString ("Conversion from Fahrenheit to Kelvin completed.", 50, 270);
 	    }
-	    else if (choice2.equals ("5"))
+	    else if (choice2.equals ("5")) // Kelvin to Fahrenheit
 	    {
 		c.drawString ("Converted " + temp + " K to " + cUnit + " °F", 50, 240);
 		c.drawString ("Conversion from Kelvin to Fahrenheit completed.", 50, 270);
 	    }
-	    else if (choice2.equals ("6"))
+	    else if (choice2.equals ("6")) // Kelvin to Celsius
 	    {
 		c.drawString ("Converted " + temp + " K to " + cUnit + " °C", 50, 240);
 		c.drawString ("Conversion from Kelvin to Celsius completed.", 50, 270);
 	    }
-
 
 	    //Confirms with user before advancing to main menu
 	    JOptionPane.showMessageDialog (null, "Press OK to return to main menu.");
@@ -433,7 +427,7 @@ public class JustinChhay_TempConversion
 	c.drawString ("You will then return back to the main menu, where", 35, 390);
 	c.drawString ("you can repeat the program or exit it.", 35, 410);
 
-
+	//JOptionPane Message - Confirms with user before returning to main menu
 	JOptionPane.showMessageDialog (null, "Press OK to return to main menu.");
 	mainMenu ();
     }
@@ -457,8 +451,9 @@ public class JustinChhay_TempConversion
 	c.drawString ("Due Date: 02.12.2019", 150, 290);
 	c.drawString ("Course Code: ICS3U6", 150, 320);
 
+	//JOptionPane Message - Confirms with user before exiting program
 	JOptionPane.showMessageDialog (null, "Goodbye");
-	System.exit (0);
+	System.exit (0); //Exits program after confirmation with exit code 0
     }
 
 
@@ -551,12 +546,12 @@ public class JustinChhay_TempConversion
 	    if (choice == '2') //celsius to kelvin
 		cUnit = temp + 273.15;
 	    if (choice == '4') //fahrenheit to kelvin
-		cUnit = (temp - 32) * (5 / 9) + 273.15;
+		cUnit = (temp - 32.0) * (5.0 / 9.0) + 273.15;
 	}
 	else if (choice == '3' || choice == '6')   //Converting to Celsius
 	{
 	    if (choice == '3') //fahrenheit to celsius
-		cUnit = (temp - 32) * (5 / 9);
+		cUnit = (temp - 32) * (5.0 / 9.0);
 	    if (choice == '6') //kelvin to celsius
 		cUnit = temp - 273.15;
 	}
