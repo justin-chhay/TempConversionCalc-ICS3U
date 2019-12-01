@@ -2,20 +2,15 @@
     Name: Justin Chhay
     Date: 28.11.2019
     Teacher: Mr. Afsari-Nejad
-    Description: Program uses reutrn method to convert user-inputted temperature (unit of choice) to other unit of choice.
+    Description: Program uses return method to convert user-inputted temperature (unit of choice) to other unit of choice.
 */
 
 
 /*
 LIST OF THINGS TO DO FOR THIS ASSIGNMENT:
     ADD OUTPUT TEXT FOR ALL THE METHODS
-	ADD IF STATEMENTS DEPENDING ON CHOICE THAT WILL OUTPUT THE VALUES WITH THE APPROPRIATE UNTIS FOR ASKDATA AND DISPLAY
-	ADD TEXT FOR INSTRUCTIONS
-	ADD TEXT FOR GOODBYE
-	ADD TEXT FOR ASK DATA
-	ADD TEXT FOR DISPLAY
     POLISH PROGRAM AND GRAMMAR FOR COMMENTS AND OUTPUT TEXT
-	
+
     DEBUG AND COMMENT ALL CODE (for eg. comment the specfic variable each error trap is for(part of rubric))
 
 */
@@ -57,7 +52,7 @@ public class JustinChhay_TempConversion
 	x = new JustinChhay_TempConversion ();
 
 	//Starts program with splashScreen method
-	x.splashScreen ();
+	x.mainMenu ();
     }
 
 
@@ -249,21 +244,59 @@ public class JustinChhay_TempConversion
 	    c.setFont (text);
 	    c.setColor (background);
 	    c.drawString ("Would you like to pause the program?", 125, 220);
+	    c.setColor (Color.white);
 
+
+	    if (choice2.equals ("1"))
+		c.drawString ("Converting Celsius (°C) to Fahrenheit (°F)", 50, 200);
+	    else if (choice2.equals ("2"))
+		c.drawString ("Converting Celsius (°C) to Kelvin (K)", 50, 200);
+	    else if (choice2.equals ("3"))
+		c.drawString ("Converting Fahrenheit (°F) to Celsius (°C)", 50, 200);
+	    else if (choice2.equals ("4"))
+		c.drawString ("Converting Fahrenheit (°F) to Kelvin (K)", 50, 200);
+	    else if (choice2.equals ("5"))
+		c.drawString ("Converting Kelvin (K) to Fahrenheit (°F)", 50, 200);
+	    else if (choice2.equals ("6"))
+		c.drawString ("Converting Kelvin (K) to Celsius (°C)", 50, 200);
+
+	    c.drawString ("Enter a negative temperature: ", 50, 230);
+
+	    //Try Catch - Error trap for temp, makes sure input is a number
 	    try
 	    {
 		temp = Double.parseDouble (JOptionPane.showInputDialog (null, "Please input a negative int/double value for the temperature you are converting from."));
+
+		//If Structure - Error trap for temp, makes sure input is negative
 		if (temp > 0.0)
 		{
-		    JOptionPane.showMessageDialog (null, "Invalid input! Please enter a negative value..");
+		    //Error Trap Message - JOptionPane.Message, will run askData(); again after outputting error statement
+		    JOptionPane.showMessageDialog (null, "Invalid input! Please enter a negative value.");
 		    askData ();
 		}
 	    }
 	    catch (Exception e)
 	    {
+		//Error Trap Message - JOptionPane.Message, will run askData(); again after outputting error statement
 		JOptionPane.showMessageDialog (null, "Invalid input! Please enter a numerical value.");
 		askData ();
 	    }
+
+	    if (choice2.equals ("1"))
+		c.drawString (temp + " °C", 375, 230);
+	    else if (choice2.equals ("2"))
+		c.drawString (temp + " °C", 375, 230);
+	    else if (choice2.equals ("3"))
+		c.drawString (temp + " °F", 375, 230);
+	    else if (choice2.equals ("4"))
+		c.drawString (temp + " °F", 375, 230);
+	    else if (choice2.equals ("5"))
+		c.drawString (temp + " K", 375, 230);
+	    else if (choice2.equals ("6"))
+		c.drawString (temp + " K", 375, 230);
+
+	    //Will allow user to confirm advancing to display method
+	    JOptionPane.showMessageDialog (null, "Press OK to advance.");
 	    display ();
 	}
     }
@@ -299,15 +332,48 @@ public class JustinChhay_TempConversion
 	    c.setFont (text);
 	    c.drawString ("Would you like to pause the program?", 125, 220);
 
-	    //Assigning String var, choice 2, into char var, choice, for parameter inside return method
+	    //Assigning String variable, choice 2, into char variable choice, for parameter inside return method
 	    choice = choice2.charAt (0);
 
-	    //Calling the return method and soring it in a double variable calles cUnit (current unit)
+	    //Calling the return method and storing it in a double variable called cUnit (current unit)
 	    cUnit = convertTemp (temp, choice);
+	    c.setColor (Color.white);
 	    c.setFont (text);
-	    c.drawString (cUnit + "", 220, 150);
 
-	    JOptionPane.showMessageDialog (null, "Press OK to advance.");
+	    if (choice2.equals ("1"))
+	    {
+		c.drawString ("Converted " + temp + " °C to " + cUnit + " °F", 50, 240);
+		c.drawString ("Conversion from Celsius to Fahrenheit completed.", 50, 270);
+	    }
+	    else if (choice2.equals ("2"))
+	    {
+		c.drawString ("Converted " + temp + " °C to " + cUnit + " K", 50, 240);
+		c.drawString ("Conversion from Celsius to Kelvin completed.", 50, 270);
+	    }
+	    else if (choice2.equals ("3"))
+	    {
+		c.drawString ("Converted " + temp + " °F to " + cUnit + " °C", 50, 240);
+		c.drawString ("Conversion from Fahrenheit to Celsius completed.", 50, 270);
+	    }
+	    else if (choice2.equals ("4"))
+	    {
+		c.drawString ("Converted " + temp + " °F to " + cUnit + " K", 50, 240);
+		c.drawString ("Conversion from Fahrenheit to Kelvin completed.", 50, 270);
+	    }
+	    else if (choice2.equals ("5"))
+	    {
+		c.drawString ("Converted " + temp + " K to " + cUnit + " °F", 50, 240);
+		c.drawString ("Conversion from Kelvin to Fahrenheit completed.", 50, 270);
+	    }
+	    else if (choice2.equals ("6"))
+	    {
+		c.drawString ("Converted " + temp + " K to " + cUnit + " °C", 50, 240);
+		c.drawString ("Conversion from Kelvin to Celsius completed.", 50, 270);
+	    }
+
+
+	    //Confirms with user before advancing to main menu
+	    JOptionPane.showMessageDialog (null, "Press OK to return to main menu.");
 	    mainMenu ();
 	}
     }
@@ -325,7 +391,7 @@ public class JustinChhay_TempConversion
 
 	//Pause Statement
 	c.setFont (text);
-	c.drawString ("PROGRAM PAUSED", 220, 180);
+	c.drawString ("PROGRAM PAUSED", 240, 220);
 
 	//JOptionPane - Needed so that the program allows user to stop and view output
 	JOptionPane.showMessageDialog (null, "Click OK to ADVANCE.");
@@ -354,6 +420,20 @@ public class JustinChhay_TempConversion
 	c.setFont (method);
 	c.drawString ("Instructions", 450, 480);
 
+	//Instructions to use program (text)
+	c.setFont (text);
+	c.drawString ("My program will calculate any specified conversion", 30, 180);
+	c.drawString ("between negative temperature values of:", 30, 200);
+	c.drawString ("Celsius, Fahrenheit, and Kelvin", 160, 220);
+	c.drawString ("Step 1) Input a key in the main menu to", 65, 250);
+	c.drawString ("        choose an option.", 65, 270);
+	c.drawString ("Step 2) Enter an appropriate negative temperature.", 65, 300);
+	c.drawString ("        (the unit you are converting from)", 65, 320);
+	c.drawString ("Step 3) Conversion complete. ", 65, 350);
+	c.drawString ("You will then return back to the main menu, where", 35, 390);
+	c.drawString ("you can repeat the program or exit it.", 35, 410);
+
+
 	JOptionPane.showMessageDialog (null, "Press OK to return to main menu.");
 	mainMenu ();
     }
@@ -368,6 +448,14 @@ public class JustinChhay_TempConversion
 	//Indicates which method user is on
 	c.setFont (method);
 	c.drawString ("Goodbye", 450, 480);
+
+	//Text
+	c.setFont (text);
+	c.drawString ("Thanks for using this program!", 120, 200);
+	c.drawString ("Name: Justin Chhay", 150, 230);
+	c.drawString ("Teacher: Mr. Afsari-Nejad", 150, 260);
+	c.drawString ("Due Date: 02.12.2019", 150, 290);
+	c.drawString ("Course Code: ICS3U6", 150, 320);
 
 	JOptionPane.showMessageDialog (null, "Goodbye");
 	System.exit (0);
